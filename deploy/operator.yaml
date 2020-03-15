@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-clusteroperator-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: simple-clusteroperator-operator
+  template:
+    metadata:
+      labels:
+        name: simple-clusteroperator-operator
+    spec:
+      serviceAccountName: simple-clusteroperator-operator
+      containers:
+        - name: simple-clusteroperator-operator
+          # Replace this with the built image name
+          image: quay.io/nmalik/simple-clusteroperator-operator:latest
+          command:
+          - simple-clusteroperator-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "simple-clusteroperator-operator"

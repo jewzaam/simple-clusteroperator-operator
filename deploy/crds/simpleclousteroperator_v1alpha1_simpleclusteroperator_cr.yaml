@@ -1,0 +1,7 @@
+apiVersion: simpleclousteroperator.managed.openshift.io/v1alpha1
+kind: SimpleClusterOperator
+metadata:
+  name: example-simpleclusteroperator
+spec:
+  # Add fields here
+  size: 3
