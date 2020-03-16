@@ -5,12 +5,12 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/kubernetes/client-go/dynamic/fake"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/types"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 )
 
 func TestNewResource(t *testing.T) {
@@ -35,8 +35,8 @@ func TestNewResource(t *testing.T) {
 	}
 }
 
-func newMockClient(t *testing.T, localObjects []runtime.Object) fake.FakeDynamicClient {
-	return fake.NewSimpleDynamicClient(runtime.NewScheme(), localObjects...)
+func newMockClient(t *testing.T, localObjects []runtime.Object) client.Client {
+	return fake.NewFakeClient(localObjects...)
 }
 
 func TestGetUnstructured(t *testing.T) {
@@ -56,8 +56,6 @@ func TestGetUnstructured(t *testing.T) {
 		configMap,
 	})
 
-	resourceGkv := schema.GroupVersionResource{Group: "", Version: "v1", Resource: "configmaps"}
-
 	// try to find the config map
 	resource := newResource(
 		configMap.APIVersion,
@@ -66,7 +64,7 @@ func TestGetUnstructured(t *testing.T) {
 		configMap.GetNamespace(),
 	)
 
-	err := client.Resource(resourceGkv).Get(context.TODO(), types.NamespacedName{Name: resource.GetName(), Namespace: resource.GetNamespace()}, resource)
+	err := client.Get(context.TODO(), types.NamespacedName{Name: resource.GetName(), Namespace: resource.GetNamespace()}, resource)
 
 	if err != nil {
 		t.Errorf("Error getting resource: %s", err)
