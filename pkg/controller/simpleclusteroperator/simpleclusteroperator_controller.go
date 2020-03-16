@@ -86,6 +86,8 @@ func (r *ReconcileSimpleClusterOperator) Reconcile(request reconcile.Request) (r
 	reqLogger := log.WithValues("Request.Namespace", request.Namespace, "Request.Name", request.Name)
 	reqLogger.Info("Reconciling SimpleClusterOperator")
 
+	// dynamic client, see https://github.com/kubernetes/client-go/blob/master/examples/dynamic-create-update-delete-deployment/main.go
+
 	// Fetch the SimpleClusterOperator instance
 	instance := &simpleclousteroperatorv1alpha1.SimpleClusterOperator{}
 	err := r.client.Get(context.TODO(), request.NamespacedName, instance)

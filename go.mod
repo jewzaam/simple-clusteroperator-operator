@@ -1,6 +1,7 @@
 module github.com/openshift/simple-clusteroperator-operator
 
 require (
+	github.com/operator-framework/operator-lifecycle-manager v0.0.0-20190128024246-5eb7ae5bdb7a
 	github.com/operator-framework/operator-sdk v0.15.1-0.20200313185352-373ebf3751b6
 	github.com/spf13/pflag v1.0.3
 	k8s.io/api v0.0.0-20190612125737-db0771252981
