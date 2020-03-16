@@ -155,7 +155,8 @@ func newPodForCR(cr *simpleclousteroperatorv1alpha1.SimpleClusterOperator) *core
 	}
 }
 
-func NewResource(apiVersion string, kind string, name string, namespace string) *unstructured.Unstructured {
+// newResource creates an Unstructured resource based on the given input.
+func newResource(apiVersion string, kind string, name string, namespace string) *unstructured.Unstructured {
 	resource := &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": apiVersion,

@@ -13,17 +13,17 @@ GOENV=GOOS=linux GOARCH=amd64 CGO_ENABLED=0
 GOBUILDFLAGS=-gcflags="all=-trimpath=${GOPATH}" -asmflags="all=-trimpath=${GOPATH}"
 TESTOPTS:=
 
-default: gobuild
+default: build
 
-.PHONY: gobuild
-gobuild: gocheck gotest ## Build binary
+.PHONY: build
+build: check test ## Build binary
 	${GOENV} go build ${GOBUILDFLAGS} -o ${BINFILE} ${MAINPACKAGE}
 
-.PHONY: gocheck
-gocheck: ## Lint code
+.PHONY: check
+check: ## Lint code
 	gofmt -s -w $$(go list -f '{{ .Dir }}' ./... )
 	go vet ./cmd/... ./pkg/...
 
-.PHONY: gotest
-gotest:
+.PHONY: test
+test:
 	go test $(TESTOPTS) $$(go list -mod=readonly -e ./...)
