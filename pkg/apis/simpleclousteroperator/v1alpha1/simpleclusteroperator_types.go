@@ -27,8 +27,8 @@ type SimpleClusterOperatorCsv struct {
 // SimpleClusterOperatorDaemonSet defines details of any DaemonSet being watched.  If Degraded or Unavailable conditions are not met the DaemonSet is assumed to be Progressing unless current and desired counts are equal.
 // +k8s:openapi-gen=true
 type SimpleClusterOperatorDaemonSet struct {
-	Name              string   `json:"name"`
-	Namespace         string   `json:"namespace"`
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
 	// DegradedSeconds is the time in seconds before declaring a degraded state when desired count is not equal to current count.  Default is SimpleClusterOperatorDaemonSetDegradedSeconds.
 	DegradedSeconds int `json:"degradedSeconds,,omitempty"`
 	// UnavailableCount is the maximum number of containers deployed while declaring an unavailable state.  Default is DefaultSimpleClusterOperatorDaemonSetUnavailableCount.
@@ -38,8 +38,8 @@ type SimpleClusterOperatorDaemonSet struct {
 // SimpleClusterOperatorDeployment defines details of any Deployment being watched.
 // +k8s:openapi-gen=true
 type SimpleClusterOperatorDeployment struct {
-	Name              string   `json:"name"`
-	Namespace         string   `json:"namespace"`
+	Name      string `json:"name"`
+	Namespace string `json:"namespace"`
 	// DegradedSeconds is the time in seconds before declaring a degraded state when desired count is not equal to current count.  Default is SimpleClusterOperatorDeploymentDegradedSeconds.
 	DegradedSeconds int `json:"degradedSeconds,omitempty"`
 	// UnavailableCount is the maximum number of containers deployed before declaring an unavailable state.  Default is DefaultSimpleClusterOperatorDeploymentUnavailableCount.
@@ -50,16 +50,16 @@ type SimpleClusterOperatorDeployment struct {
 type SimpleClusterOperatorResources struct {
 	Name      string `json:"name"`
 	Namespace string `json:"namespace"`
-	Kind	  string `json:"kind"`
+	Kind      string `json:"kind"`
 }
 
 // SimpleClusterOperatorWatch defines the details of an operator being watched
 // +k8s:openapi-gen=true
 type SimpleClusterOperatorWatch struct {
-	Csvs []SimpleClusterOperatorCsv `json:"csvs,omitempty"`
-	DaemonSets []SimpleClusterOperatorDaemonSet `json:"daemonSets,omitempty"`
+	Csvs        []SimpleClusterOperatorCsv        `json:"csvs,omitempty"`
+	DaemonSets  []SimpleClusterOperatorDaemonSet  `json:"daemonSets,omitempty"`
 	Deployments []SimpleClusterOperatorDeployment `json:"deployments,omitempty"`
-	Resources []SimpleClusterOperatorResources `json:"resources,omitempty"`
+	Resources   []SimpleClusterOperatorResources  `json:"resources,omitempty"`
 }
 
 // SimpleClusterOperatorSpec defines the desired state of SimpleClusterOperator
