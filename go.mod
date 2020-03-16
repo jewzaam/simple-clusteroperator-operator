@@ -1,13 +1,15 @@
 module github.com/openshift/simple-clusteroperator-operator
 
 require (
+	github.com/openshift/api v0.0.0-20200311183032-85e16cc5dd7c // indirect
+	github.com/openshift/hive v0.0.0-20200310153125-9d6391083c54
 	github.com/operator-framework/operator-lifecycle-manager v0.0.0-20190128024246-5eb7ae5bdb7a
 	github.com/operator-framework/operator-sdk v0.15.1-0.20200313185352-373ebf3751b6
-	github.com/spf13/pflag v1.0.3
-	k8s.io/api v0.0.0-20190612125737-db0771252981
-	k8s.io/apimachinery v0.0.0-20190612125636-6a5db36e93ad
+	github.com/spf13/pflag v1.0.5
+	github.com/stretchr/testify v1.4.0
+	k8s.io/api v0.17.1
+	k8s.io/apimachinery v0.17.1
 	k8s.io/client-go v11.0.0+incompatible
-	k8s.io/kube-openapi v0.0.0-20190603182131-db7b694dc208 // indirect
 	sigs.k8s.io/controller-runtime v0.1.12
 	sigs.k8s.io/controller-tools v0.1.10
 )
